@@ -1,0 +1,25 @@
+function catMouse(map, maxDistance) {
+    const rows = map.split('\n');
+    let catIndex, mouseIndex;
+
+    for (let i = 0; i < rows.length; i++) {
+        if (rows[i].includes('C')) {
+            catIndex = { row: i, col: rows[i].indexOf('C') };
+        }
+        if (rows[i].includes('m')) {
+            mouseIndex = { row: i, col: rows[i].indexOf('m') };
+        }
+    }
+
+    if (!catIndex || !mouseIndex) {
+        return 'boring without two animals';
+    }
+
+    const distance = Math.abs(catIndex.row - mouseIndex.row) + Math.abs(catIndex.col - mouseIndex.col);
+
+    if (distance <= maxDistance) {
+        return 'Caught!';
+    } else {
+        return 'Escaped!';
+    }
+}
